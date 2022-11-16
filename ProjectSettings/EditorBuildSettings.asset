@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MultiUserVR.unity
-    guid: c31d2931a0c2b374f9bce1b5bbb0f514
+    path: Assets/Scenes/PortalRoom.unity
+    guid: a5d134073bd924a49b7753ad48cf5b18
+  - enabled: 1
+    path: Assets/Scenes/Moon.unity
+    guid: 2e5857725e91d88419141a9750af6447
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4745e58b43eaac84fb7f6194172f7514, type: 2}
     com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: 0cbdab12b4b62f5428b9fb90f1ce4447, type: 2}
