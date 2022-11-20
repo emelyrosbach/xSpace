@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         scenes = new Dictionary<int, string>();
         scenes.Add(0, "PortalRoom");
         scenes.Add(1, "Moon");
-        SceneManager.LoadScene(scenes[currentScene]);
+        scenes.Add(2, "Quiz");
     }
 
     void Awake()
@@ -31,11 +31,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void loadCurrentScene()
+    {
+        SceneManager.LoadScene(scenes[currentScene]);
+    }
+
     public void nextScene()
     {
         Debug.Log("nextScene");
         currentScene++;
         SceneManager.LoadScene(scenes[currentScene]);
     }
-}
 
+    public void startQuiz()
+    {
+        SceneManager.LoadScene(scenes[2]);
+    }
+
+    public void endQuiz()
+    {
+        SceneManager.LoadScene(scenes[currentScene]);
+    }
+}

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //https://stackoverflow.com/questions/35890932/unity-game-manager-script-works-only-one-time
-//How to always start of right scene?
 
 public class Portal : MonoBehaviour
 {

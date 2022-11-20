@@ -24,17 +24,26 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             "audioboy"
         };
 
+    private GameManager gameManager;
+
     void Start()
     {
         Debug.Log("PhotonLogin: Verbindung zum Server wird hergestellt...");
         PhotonNetwork.GameVersion = GAME_VERSION;
         PhotonNetwork.ConnectUsingSettings();
+        gameManager = GameManager.Instance;
+    }
+
+    void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("Verbunden zum Server.");
         PhotonNetwork.JoinOrCreateRoom("VR-Room", ROOM_OPTIONS, null);
+        gameManager.loadCurrentScene();
     }
 
     public override void OnJoinedRoom()
