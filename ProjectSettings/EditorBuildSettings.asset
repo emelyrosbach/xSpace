@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Moon.unity
     guid: 2e5857725e91d88419141a9750af6447
+  - enabled: 1
+    path: Assets/Scenes/Quiz.unity
+    guid: 245fc90ae80df44cc88f27aa80b50bad
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4745e58b43eaac84fb7f6194172f7514, type: 2}
     com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: 0cbdab12b4b62f5428b9fb90f1ce4447, type: 2}
