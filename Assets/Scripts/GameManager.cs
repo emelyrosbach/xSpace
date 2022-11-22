@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
         scenes = new Dictionary<int, string>();
         scenes.Add(0, "PortalRoom");
         scenes.Add(1, "Moon");
-        scenes.Add(2, "Quiz");
+        scenes.Add(2, "Mars");
+        scenes.Add(3, "Jupiter");
+        scenes.Add(4, "End");
+        scenes.Add(5, "Quiz");
         currentPortalActive = true;
     }
 
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
     public void startQuiz()
     {
         //last scene in build settings
-        SceneManager.LoadScene(scenes[2]);
+        SceneManager.LoadScene(scenes[5]);
     }
 
     public void endQuiz()
