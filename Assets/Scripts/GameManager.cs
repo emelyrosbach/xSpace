@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    Dictionary<int, string> scenes;
-    public int currentScene;
+    private Dictionary<int, string> scenes;
+    private int currentScene;
+    public bool currentPortalActive;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
         scenes.Add(0, "PortalRoom");
         scenes.Add(1, "Moon");
         scenes.Add(2, "Quiz");
+        currentPortalActive = true;
     }
 
     void Awake()
@@ -31,6 +33,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int getCurrentScene()
+    {
+        return currentScene;
+    }
+
     public void loadCurrentScene()
     {
         SceneManager.LoadScene(scenes[currentScene]);
@@ -38,18 +45,27 @@ public class GameManager : MonoBehaviour
 
     public void nextScene()
     {
-        Debug.Log("nextScene");
-        currentScene++;
-        SceneManager.LoadScene(scenes[currentScene]);
+        if (currentPortalActive)
+        {
+            currentScene++;
+            SceneManager.LoadScene(scenes[currentScene]);
+            currentPortalActive = false;
+        }
     }
 
     public void startQuiz()
     {
+        //last scene in build settings
         SceneManager.LoadScene(scenes[2]);
     }
 
     public void endQuiz()
     {
         SceneManager.LoadScene(scenes[currentScene]);
+    }
+
+    public bool isCurrentPortalActive()
+    {
+        return currentPortalActive;
     }
 }

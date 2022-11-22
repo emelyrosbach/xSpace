@@ -16,9 +16,18 @@ public class Portal : MonoBehaviour
     //Both old & new Input Manager enabled
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (gameManager.isCurrentPortalActive())
         {
-            gameManager.nextScene();
+            GetComponent<Renderer>().material.color = new Color(0, 255, 0);
         }
+        else
+        {
+            GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        }
+    }
+
+    void OnMouseDown()
+    {
+        gameManager.nextScene();
     }
 }

@@ -36,7 +36,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        PhotonNetwork.AutomaticallySyncScene = true;
+        //Only use when you want to syn all player scenes
+        //PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnConnectedToMaster()
