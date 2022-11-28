@@ -1275,28 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feab4fe4fda4474183d51d951673375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QnA:
-  - Question: Do you like astronomy?
-    Answers:
-    - NO!
-    - not really
-    - it's okay
-    - Yes!
-    CorrectAnswer: 4
-  - Question: What season do we currently have?
-    Answers:
-    - winter
-    - summer
-    - autumn
-    - spring
-    CorrectAnswer: 1
-  - Question: Do you like sweets
-    Answers:
-    - no
-    - yes
-    - no
-    - no
-    CorrectAnswer: 2
+  QnA: []
   options:
   - {fileID: 1026697741}
   - {fileID: 1295497110}

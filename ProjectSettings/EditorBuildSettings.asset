@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/PortalRoom.unity
     guid: a5d134073bd924a49b7753ad48cf5b18
   - enabled: 1
+    path: Assets/Scenes/Moon.unity
+    guid: f7128c7cc17844b2c8c7f79f57e54a29
+  - enabled: 1
+    path: Assets/Scenes/Mars.unity
+    guid: b25b1509c30e74fac8be36bfd2845c9a
+  - enabled: 1
+    path: Assets/Scenes/Jupiter.unity
+    guid: ed057bd90ee0b4fb48b83bb2d5b82ab3
+  - enabled: 1
     path: Assets/Scenes/End.unity
     guid: ece0f96856dd84c61812a5296da2c2a4
   - enabled: 1
