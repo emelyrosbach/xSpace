@@ -9,14 +9,14 @@ using JetBrains.Annotations;
 public class Launcher : MonoBehaviourPunCallbacks
 {
 
-    const string roomName = "xSpace-portalRoom";
+    const string roomName = "PortalRoom";
+    public GameObject UsernamePanel;
 
     void Start()
     {
         PhotonNetwork.GameVersion = "1.0";
         PhotonNetwork.ConnectUsingSettings();
     }
-
 
     void Update()
     {
@@ -36,7 +36,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void OnButtonClick()
     {
         Debug.Log("On Button Click");
-
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 4;
         options.IsVisible = false;
@@ -49,5 +48,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("PortalRoom");
     }
 
-
+    public void OnSetUsernameValueChanged(string input)
+    {
+        PlayerPrefs.SetString("username", input);
+    }
 }

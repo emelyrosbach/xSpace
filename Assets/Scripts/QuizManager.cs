@@ -11,6 +11,7 @@ public class QuizManager : MonoBehaviour
     public int currentQuestion;
     public Text QuestionTxt;
     public Text scoreTxt;
+    //gets passed to GM
     public int score;
     public int totoalQuestions = 0;
     public GameObject Quizpanel;
@@ -89,7 +90,8 @@ public class QuizManager : MonoBehaviour
 
     public void close()
     {
-        gameManager.endQuiz();
+        int currentScore = (int)score;
+        gameManager.endQuiz(score);
     }
 
     private void setUp()
@@ -113,10 +115,7 @@ public class QuizManager : MonoBehaviour
 
         switch (gameManager.getCurrentScene())
         {
-            case 0:
-                break;
-
-            case 1:
+            case 2:
                 question1 = "Are you on the moon?";
                 answers1 = new string[] { "no", "no", "yes", "no" };
                 correct1 = 3;
@@ -138,7 +137,7 @@ public class QuizManager : MonoBehaviour
                 QnA = quiz1;
                 break;
 
-            case 2:
+            case 3:
                 question1 = "Are you on mars?";
                 answers1 = new string[] { "no", "no", "yes", "no" };
                 correct1 = 3;
@@ -160,7 +159,7 @@ public class QuizManager : MonoBehaviour
                 QnA = quiz1;
                 break;
 
-            case 3:
+            case 4:
                 question1 = "Are you on jupier?";
                 answers1 = new string[] { "no", "no", "yes", "no" };
                 correct1 = 3;
