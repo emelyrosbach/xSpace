@@ -6,11 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: de5121a6fcc5a43d2b433ccbd35e0e7c
+  - enabled: 1
     path: Assets/Scenes/PortalRoom.unity
     guid: a5d134073bd924a49b7753ad48cf5b18
   - enabled: 1
     path: Assets/Scenes/Moon.unity
-    guid: 2e5857725e91d88419141a9750af6447
+    guid: 906b64bb566544b4aae1a42c4b88c4b2
+  - enabled: 1
+    path: Assets/Scenes/Mars.unity
+    guid: 00efb3923afb34c5ea544b74a051e831
+  - enabled: 1
+    path: Assets/Scenes/Jupiter.unity
+    guid: ef164a59d0a8746d9b3a234758762e4e
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: ece0f96856dd84c61812a5296da2c2a4
   - enabled: 1
     path: Assets/Scenes/Quiz.unity
     guid: 245fc90ae80df44cc88f27aa80b50bad

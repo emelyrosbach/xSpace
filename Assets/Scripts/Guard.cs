@@ -1,5 +1,3 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,9 +16,11 @@ public class Guard : MonoBehaviour
     //Both old & new Input Manager enabled
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            gameManager.startQuiz();
-        }
+
+    }
+
+    void OnMouseDown()
+    {
+        gameManager.startQuiz();
     }
 }

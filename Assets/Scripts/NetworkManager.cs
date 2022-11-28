@@ -6,6 +6,7 @@ using UnityEngine;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     static string GAME_VERSION = "Ver.1";
+    public GameObject playerPrefab;
 
     static RoomOptions ROOM_OPTIONS = new RoomOptions()
     {
@@ -36,7 +37,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        PhotonNetwork.AutomaticallySyncScene = true;
+        //Only use when you want to syn all player scenes
+        //PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnConnectedToMaster()
@@ -55,7 +57,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Ein neuer Avatar hat den Raum betreten.");
         int index = Random.Range(0, modelList.Count);
-        networkPlayer = PhotonNetwork.Instantiate(modelList[index], new Vector3(0, 0, 0), Quaternion.identity, 0);
+
+        networkPlayer = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(10, 5, 0), Quaternion.identity, 0);
+
         networkPlayer.transform.parent = transform;
         cameraRig.transform.parent = networkPlayer.transform;
     }
