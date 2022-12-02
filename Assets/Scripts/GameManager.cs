@@ -1,39 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
+
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : MonoBehaviourPunCallbacks
+
+public class GameManager: MonoBehaviour
 {
     public static GameManager Instance;
-    private Dictionary<int, string> scenes;
-    private int currentScene;
-    public bool currentPortalActive;
-    //public GameObject playerPrefabObject;
-    public GameObject playerPrefabObject;
-    public PlayerControls currentPlayer;
-    private int tempScore = 0;
 
-    void Start()
-    {
-        //PortalRoom = scene 1 in build settings
-        currentScene = 1;
-        scenes = new Dictionary<int, string>();
-        scenes.Add(0, "Start");
-        scenes.Add(1, "PortalRoom");
-        scenes.Add(2, "Moon");
-        scenes.Add(3, "Mars");
-        scenes.Add(4, "Jupiter");
-        scenes.Add(5, "End");
-        scenes.Add(6, "Quiz");
-        currentPortalActive = true;
-        //PhotonNetwork.Instantiate(this.playerPrefabObject.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-        playerPrefabObject = PhotonNetwork.Instantiate(this.playerPrefabObject.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-        currentPlayer = playerPrefabObject.GetComponent<PlayerControls>();
-        Debug.Log("Teilnehmer-Anzahl: " + PhotonNetwork.CurrentRoom.PlayerCount);
-    }
+    private int level;
+
+    [SerializeField]
+    GameObject networkPlayer;
+
+    [SerializeField]
+    Transform cameraRig;
+
+    public Transform XRRigPosition;
+
+    public Transform origin0;
+    public Transform origin1;
+
+    /*private Dictionary<int, Transform> spawns;
+
+    public Transform originLevel0;
+    public Transform originLevel1;*/
+
 
     void Awake()
     {
@@ -48,60 +43,49 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public int getCurrentScene()
+    void Start()
     {
-        return currentScene;
+        level = 0;
+        /*spawns = new Dictionary<int, Transform>();
+        spawns.Add(0, originLevel0);
+        spawns.Add(1, originLevel1);*/
     }
 
-    public void loadCurrentScene()
+    void Update()
     {
-        PhotonNetwork.LoadLevel(scenes[currentScene]);
+
     }
 
-    public void nextScene()
+    public void InstantiatePlayer()
     {
-        if (currentPortalActive)
+        networkPlayer = PhotonNetwork.Instantiate(this.networkPlayer.name, new Vector3(Random.Range(-2, 2), 3f, Random.Range(3, 4)), Quaternion.identity, 0);
+        networkPlayer.transform.parent = transform;
+        cameraRig.transform.parent = networkPlayer.transform;
+    }
+
+   /* public void nextLevel()
+    {
+        level++;
+        switch (level)
         {
-            if (currentScene >1 && currentScene <5)
-            {
-                currentPlayer.updatePlayerScore(tempScore);
-            }
-            currentScene++;
-            PhotonNetwork.LoadLevel(scenes[currentScene]);
-            currentPortalActive = false;
+            case 0:
+                VROrigin.transform.position = spawns[level].position + new Vector3(0, 0.5f, 0);
+                break;
+
+            case 1:
+                VROrigin.transform.position = spawns[level].position + new Vector3(0, 0.5f, 0);
+                break;
+
+            default:
+                break;
         }
-    }
+    }*/
 
-    public void startQuiz()
-    {
-        //last scene in build settings
-        PhotonNetwork.LoadLevel("Quiz");
+    public void nextLevel() {
+        XRRigPosition.transform.position = origin1.position;
+        //XRRigPosition.transform.position = new Vector3(Random.Range(-2, 2), 0.25f, Random.Range(3, 4));
     }
+    
 
-    public void endQuiz(int score)
-    {
-        tempScore = score;
-        PhotonNetwork.LoadLevel(scenes[currentScene]);
-    }
-
-    public bool isCurrentPortalActive()
-    {
-        return currentPortalActive;
-    }
-
-    public void OnLeaveButtonClicked()
-    {
-        PhotonNetwork.LeaveRoom();
-    }
-
-    public override void OnLeftRoom()
-    {
-        PhotonNetwork.LoadLevel("Start");
-    }
-
-    public PlayerControls GetCurrentPlayer()
-    {
-        return currentPlayer;
-    }
 }
-      
+
