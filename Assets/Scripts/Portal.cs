@@ -14,13 +14,21 @@ public class Portal : MonoBehaviour
     //Both old & new Input Manager enabled
     void Update()
     {
-      
+        if (gameManager.isCurrentPortalActive())
+        {
+           // GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+        }
+        else
+        {
+           // GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        }
     }
 
     public void OnCollisionEnter(Collision other) {
-        Debug.Log("next level");
-        gameManager.nextLevel();  
+        if (gameManager.isCurrentPortalActive()) {
+            Debug.Log("next level");
+            gameManager.nextLevel();  
+        }
+        
     }
-
-
 }

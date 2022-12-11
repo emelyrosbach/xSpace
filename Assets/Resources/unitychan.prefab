@@ -2305,6 +2305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Head: {fileID: 6224589233029154387}
   CameraOffset: {x: 0, y: 0, z: 0}
+  score: 0
 --- !u!114 &7897862181637633331
 MonoBehaviour:
   m_ObjectHideFlags: 0

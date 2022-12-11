@@ -19,10 +19,15 @@ public class GameManager: MonoBehaviour
     [SerializeField]
     Transform cameraRig;
 
+    NetworkPlayer np;
+
     public Transform XRRigPosition;
 
     public Transform origin0;
     public Transform origin1;
+
+    private bool currentPortalActive = false;
+    private int currentScore;
 
     /*private Dictionary<int, Transform> spawns;
 
@@ -46,6 +51,7 @@ public class GameManager: MonoBehaviour
     void Start()
     {
         level = 0;
+        currentScore = 0;
         /*spawns = new Dictionary<int, Transform>();
         spawns.Add(0, originLevel0);
         spawns.Add(1, originLevel1);*/
@@ -58,7 +64,8 @@ public class GameManager: MonoBehaviour
 
     public void InstantiatePlayer()
     {
-        networkPlayer = PhotonNetwork.Instantiate(this.networkPlayer.name, new Vector3(Random.Range(-2, 2), 3f, Random.Range(3, 4)), Quaternion.identity, 0);
+        networkPlayer = PhotonNetwork.Instantiate(this.networkPlayer.name, new Vector3(0, 3f, 0), Quaternion.identity, 0);
+        np = networkPlayer.GetComponent<NetworkPlayer>();
         networkPlayer.transform.parent = transform;
         cameraRig.transform.parent = networkPlayer.transform;
     }
@@ -82,10 +89,37 @@ public class GameManager: MonoBehaviour
     }*/
 
     public void nextLevel() {
+        setPlayerScore(currentScore);
         XRRigPosition.transform.position = origin1.position;
         //XRRigPosition.transform.position = new Vector3(Random.Range(-2, 2), 0.25f, Random.Range(3, 4));
     }
-    
 
+    public int getCurrentLevel()
+    {
+        return level;
+    }
+
+    public bool isCurrentPortalActive()
+    {
+        return currentPortalActive;
+    }
+
+    public void setCurrentPortal(bool status)
+    {
+        currentPortalActive = status;
+    }
+
+    public void setPlayerScoreGM (int score)
+    {
+        currentScore = score;
+    }
+
+    public void setPlayerScore(int score)
+    {
+        np.setScore(score);
+    }
+    public int getTotalScore() {
+        return np.getTotalScore();
+    }
 }
 
