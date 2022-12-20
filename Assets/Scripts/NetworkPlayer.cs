@@ -17,6 +17,7 @@ public class NetworkPlayer : MonoBehaviourPun
     //private Transform rightHandRig;
     //private Transform leftHandRig;
     public Vector3 CameraOffset = new Vector3(0, 0, 0);
+    public int score;
 
 
     void Start()
@@ -24,6 +25,7 @@ public class NetworkPlayer : MonoBehaviourPun
         photonView = GetComponent<PhotonView>();
         XROrigin rig = FindObjectOfType<XROrigin>();
         headRig = rig.transform.Find("ViveCameraRig/Camera");
+        score = 0;
         //leftHandRig = rig.transform.Find("ViveCameraRig/LeftHand");
         //rightHandRig = rig.transform.Find("ViveCameraRig/RightHand");
         if (photonView.IsMine)
@@ -87,5 +89,18 @@ public class NetworkPlayer : MonoBehaviourPun
             this.gameObject.name = otherName;
             transform.Find("NameUI").gameObject.GetComponent<TextMesh>().text = otherName;
         }
+    }
+
+    public void setScore (int s)
+    {
+        if (photonView.IsMine)
+        {
+            this.score = this.score + s;
+        }
+    }
+
+    public int getTotalScore ()
+    {
+        return this.score;
     }
 }
