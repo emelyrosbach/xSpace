@@ -25,11 +25,18 @@ public class GameManager: MonoBehaviour
 
     public Transform origin0;
     public Transform origin1;
+    public Transform origin2;
+
+    public AudioSource audio;
+    public AudioClip clip0;
+    public AudioClip clip1;
+    public AudioClip clip2;
 
     private bool currentPortalActive = false;
     private int currentScore;
 
     private Dictionary<int, Transform> spawns;
+    private Dictionary<int, AudioClip> sounds;
 
 
     void Awake()
@@ -52,6 +59,14 @@ public class GameManager: MonoBehaviour
         spawns = new Dictionary<int, Transform>();
         spawns.Add(0, origin0);
         spawns.Add(1, origin1);
+        spawns.Add(2, origin2);
+        sounds = new Dictionary<int, AudioClip>();
+        sounds.Add(0, clip0);
+        sounds.Add(1, clip1);
+        sounds.Add(2, clip2);
+        audio.clip = clip0;
+        audio.loop = true;
+        audio.Play();
     }
 
     void Update()
@@ -68,13 +83,18 @@ public class GameManager: MonoBehaviour
     }
 
     public void nextLevel() {
-        level++;
-        setPlayerScore(currentScore);
-        currentScore = 0;
-        currentPortalActive = false;
-        XRRigPosition.transform.position = spawns[level].position;
-        //XRRigPosition.transform.position = origin1.position;
-        //XRRigPosition.transform.position = new Vector3(Random.Range(-2, 2), 0.25f, Random.Range(3, 4));
+        if (level < 2)
+        {
+            level++;
+            setPlayerScore(currentScore);
+            currentScore = 0;
+            currentPortalActive = false;
+            XRRigPosition.transform.position = spawns[level].position;
+            audio.Stop();
+            audio.clip = sounds[level];
+            audio.loop = true;
+            audio.Play();
+        }
     }
 
     public int getCurrentLevel()

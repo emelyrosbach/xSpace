@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Rock
+  - Can1
+  - Can2
+  - Can3
+  - Can4
+  - Can5
+  - Can6
+  - Can7
+  - Can8
+  - Can10
+  - Can9
   layers:
   - Default
   - TransparentFX

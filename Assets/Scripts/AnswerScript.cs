@@ -9,6 +9,7 @@ public class AnswerScript : MonoBehaviour
     public QuizManager quizManager;
     public Material red;
     public Material green;
+    public Material neutral;
 
 
     public void Answer()
@@ -21,20 +22,20 @@ public class AnswerScript : MonoBehaviour
 
             Image r = GetComponent<Image>();
             r.material = green;
-
-            /*ColorBlock cb =  GetComponent<Button>().maetial.colors;
-            cb.pressedColor = Color.green;
-            GetComponent<Button>().colors = cb;**/
-
-            //this.gameObject.GetComponent<Image>().color = Color.green;
-            //this.gameObject.GetComponent<Image>().color = Color.white;
         }
         else
         {
             Debug.Log("Wrong");
             quizManager.wrong();
-            //this.gameObject.GetComponent<Image>().color = Color.red;
-            //this.gameObject.GetComponent<Image>().color = Color.white;
+
+            Image r = GetComponent<Image>();
+            r.material = red;
         }
+    }
+
+    public void setNeutral()
+    {
+        Image r = GetComponent<Image>();
+        r.material = neutral;
     }
 }

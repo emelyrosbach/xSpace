@@ -5,6 +5,9 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     private GameManager  gameManager;
+    public GameObject portalLiquid;
+    public Material open;
+    public Material closed;
 
     void Start()
     {
@@ -16,11 +19,11 @@ public class Portal : MonoBehaviour
     {
         if (gameManager.isCurrentPortalActive())
         {
-           // GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+            portalLiquid.GetComponent<Renderer>().material = open;
         }
         else
         {
-           // GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+            portalLiquid.GetComponent<Renderer>().material = closed;
         }
     }
 
