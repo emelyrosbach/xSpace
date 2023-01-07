@@ -9256,31 +9256,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: add1d5ea65b47174dbb5a9ddb4535708, type: 3}
@@ -9301,6 +9301,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed93aec165f6f46f489079d9afcf9277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+--- !u!65 &1127849142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807091228}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 6, z: 3}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1137466714
 GameObject:
   m_ObjectHideFlags: 0
@@ -18286,6 +18300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a5e7bbbea24d84984374e3501c9348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   portalLiquid: {fileID: 853113135}
   open: {fileID: 2100000, guid: 8bd4b229820ea4fb38034e2a81368fed, type: 2}
   closed: {fileID: 2100000, guid: cc9b3bd67dcd246f6ba3cf8d85b909ef, type: 2}
