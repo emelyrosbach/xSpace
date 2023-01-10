@@ -18,7 +18,10 @@ public class DisplayScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int score = gameManager.getTotalScore();
-        ScoreTxt.text = "You have " + score + " points!";
+        if(gameManager.getCurrentLevel() >= 1)
+        {
+            int score = gameManager.getTotalScore();
+            ScoreTxt.text = "You have " + score + " points!";
+        }
     }
 }

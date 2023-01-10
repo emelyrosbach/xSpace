@@ -45,10 +45,10 @@ public class MovePlayerController : MonoBehaviour
             float speed = movementSpeed;
 
             
-            if (_targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButton)  && primaryButton == true)
+           /* if (_targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButton)  && primaryButton == true)
             {
                
-            }
+            }**/
              
 
 
@@ -74,9 +74,9 @@ public class MovePlayerController : MonoBehaviour
                 XrReference.transform.position += direction * Time.deltaTime * speed; // new Vector3(primary2DaxisValue.x, 0, primary2DaxisValue.y) * Time.deltaTime * 10.0f;
             }
            
-            if (primaryButton) {
+            /*if (primaryButton) {
               XrReference.transform.position += new Vector3 (0, 0.5f, 0);
-              }
+              }**/
         }
     }
 }
