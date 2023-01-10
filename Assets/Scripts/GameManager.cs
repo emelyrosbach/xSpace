@@ -32,11 +32,16 @@ public class GameManager: MonoBehaviour
     public AudioClip clip1;
     public AudioClip clip2;
 
+    public GameObject level0;
+    public GameObject level1;
+    public GameObject level2;
+
     private bool currentPortalActive = false;
     private int currentScore;
 
     private Dictionary<int, Transform> spawns;
     private Dictionary<int, AudioClip> sounds;
+    private Dictionary<int, GameObject> levels;
 
 
     void Awake()
@@ -54,6 +59,13 @@ public class GameManager: MonoBehaviour
 
     void Start()
     {
+        level0.SetActive(true);
+        level1.SetActive(false);
+        level2.SetActive(false);
+        levels = new Dictionary<int, GameObject>();
+        levels.Add(0,level0);
+        levels.Add(1,level1);
+        levels.Add(2,level2);
         level = 0;
         currentScore = 0;
         spawns = new Dictionary<int, Transform>();
@@ -86,6 +98,7 @@ public class GameManager: MonoBehaviour
         if (level < 2)
         {
             level++;
+            levels[level].SetActive(true);
             setPlayerScore(currentScore);
             currentScore = 0;
             currentPortalActive = false;
@@ -94,6 +107,7 @@ public class GameManager: MonoBehaviour
             audio.clip = sounds[level];
             audio.loop = true;
             audio.Play();
+            levels[level-1].SetActive(false);
         }
     }
 

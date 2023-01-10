@@ -45,7 +45,6 @@ public class QuizManager : MonoBehaviour
     {
         for (int i = 0; i < options.Length; i++)
         {
-            options[i].GetComponent<AnswerScript>().setNeutral();
             options[i].GetComponent<AnswerScript>().isCorrect = false;
             options[i].transform.GetChild(0).GetComponent<Text>().text = QnA[currentQuestion].Answers[i];
 
@@ -53,6 +52,7 @@ public class QuizManager : MonoBehaviour
             {
                 options[i].GetComponent<AnswerScript>().isCorrect = true;
             }
+            options[i].GetComponent<AnswerScript>().setNeutral();
         }
     }
 
@@ -101,7 +101,7 @@ public class QuizManager : MonoBehaviour
                 QuizContainer.transform.position = new Vector3(-2.62298346f, 5.0301981f, 3.74675226f);
                 break;
             case 1:
-                QuizContainer.transform.position = new Vector3(-75.8899994f, -190.529999f, 348.01001f);
+                QuizContainer.transform.position = new Vector3(293.8760070800781f,-10.1899995803833f,9.932999610900879f);
                 break;
             default:
                 QuizContainer.transform.position = new Vector3(-2.62298346f, 5.0301981f, 3.74675226f);
@@ -150,7 +150,7 @@ public class QuizManager : MonoBehaviour
                 questionAndAnswers1 = new QuestionsAndAnswers(question1, answers1, correct1);
 
                 question2 = "What is the moon made out of";
-                answers2 = new string[] { "cheese", "icy materials – water, methane and ammonia", "mostly gas like many other planets", "anorthosite, a calcium rich rock" };
+                answers2 = new string[] { "cheese", "icy materials", "mostly gas", "anorthosite" };
                 correct2 = 4;
                 questionAndAnswers2 = new QuestionsAndAnswers(question2, answers2, correct2);
 
@@ -171,8 +171,8 @@ public class QuizManager : MonoBehaviour
                 correct1 = 2;
                 questionAndAnswers1 = new QuestionsAndAnswers(question1, answers1, correct1);
 
-                question2 = "Why is the mars red? ";
-                answers2 = new string[] { "due to the plants hot temperature", "because it's made up of red phosphorus compounds", "because it's made up of oxidized iron", "due to the sun bleaching out the planets surface" };
+                question2 = "Why is the mars called red planet? ";
+                answers2 = new string[] { "hot temperature", "made up of phosphorus", "made up of oxidized iron", "red clouds" };
                 correct2 = 3;
                 questionAndAnswers2 = new QuestionsAndAnswers(question2, answers2, correct2);
 

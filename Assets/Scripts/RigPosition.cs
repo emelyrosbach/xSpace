@@ -10,6 +10,6 @@ public class RigPosition : MonoBehaviour
     {
         //XRRigPosition.transform.position = new Vector3(Random.Range(-6, 6), 0.1f, Random.Range(-6, 6));
         //XRRigPosition.transform.position = new Vector3(Random.Range(-2, 2), 0.25f, Random.Range(3, 4));
-        XRRigPosition.transform.position = new Vector3(Random.Range(-1, 1), 0.25f, Random.Range(1, 2));
+        XRRigPosition.transform.position = new Vector3(Random.Range(-2, -1), 0.25f, Random.Range(-5, -6));
     }
 }
