@@ -1,42 +1,24 @@
 # README 
 
-A template of README best practices to make your README simple to understand and easy to use. 
+Have you ever wondered what standing on a different planet would feel like? This human desire is also the basis for the educational virtual reality application “xSpace”, which allows users to explore different planets and moons in our solar system and uses a gamification approach to educate people about our galaxy and peculiarities of specific planets. The xSpace project was implemented employing the Unity game engine and Oculus headset, allowing for an immersive experience, where users could not only see different planets, but also experience the unique sounds and gravity of each specific planet.
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Support](#support)
-- [Contributing](#contributing)
 
 ## Installation
 
-Download to your project directory, add `README.md`, and commit:
-
-```sh
-curl -LO http://git.io/Xy0Chg
-git add README.md
-git commit -m "Use README Boilerplate"
-```
+Clone this GitHub repository (master branch) to your local device and open it inside Unity.
+Or download the executable directly from the final branch and run it via double click.
 
 ## Usage
 
-Replace the contents of `README.md` with your project's:
+Here you can find the tasks, which can be completed inside the game.
 
-- Name
-- Description
-- Installation instructions
-- Usage instructions
-- Support instructions
-- Contributing instructions
-- Licence
+![alt text](https://github.com/emelyrosbach/xSpace/blob/master/Assets/Images/Onboarding.jpg)
 
-Feel free to remove any sections that aren't applicable to your project.
 
-## Support
 
-Please [open an issue](https://github.com/fraction/readme-boilerplate/issues/new) for support.
 
-## Contributing
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/fraction/readme-boilerplate/compare/).
