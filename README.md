@@ -9,7 +9,7 @@ Have you ever wondered what standing on a different planet would feel like? This
 
 ## Installation
 
-Colone this GitHub repository (master branch) to your local device and open it inside Unity.
+Clone this GitHub repository (master branch) to your local device and open it inside Unity.
 Or download the executable directly from the final branch and run it via double click.
 
 ## Usage
