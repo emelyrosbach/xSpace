@@ -1,39 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
+
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : MonoBehaviourPunCallbacks
+
+public class GameManager: MonoBehaviour
 {
     public static GameManager Instance;
-    private Dictionary<int, string> scenes;
-    private int currentScene;
-    public bool currentPortalActive;
-    //public GameObject playerPrefabObject;
-    public GameObject playerPrefabObject;
-    public PlayerControls currentPlayer;
-    private int tempScore = 0;
 
-    void Start()
-    {
-        //PortalRoom = scene 1 in build settings
-        currentScene = 1;
-        scenes = new Dictionary<int, string>();
-        scenes.Add(0, "Start");
-        scenes.Add(1, "PortalRoom");
-        scenes.Add(2, "Moon");
-        scenes.Add(3, "Mars");
-        scenes.Add(4, "Jupiter");
-        scenes.Add(5, "End");
-        scenes.Add(6, "Quiz");
-        currentPortalActive = true;
-        //PhotonNetwork.Instantiate(this.playerPrefabObject.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-        playerPrefabObject = PhotonNetwork.Instantiate(this.playerPrefabObject.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-        currentPlayer = playerPrefabObject.GetComponent<PlayerControls>();
-        Debug.Log("Teilnehmer-Anzahl: " + PhotonNetwork.CurrentRoom.PlayerCount);
-    }
+    private int level;
+
+    [SerializeField]
+    GameObject networkPlayer;
+
+    [SerializeField]
+    Transform cameraRig;
+
+    NetworkPlayer np;
+
+    public Transform XRRigPosition;
+
+    public Transform origin0;
+    public Transform origin1;
+    public Transform origin2;
+
+    public AudioSource audio;
+    public AudioClip clip0;
+    public AudioClip clip1;
+    public AudioClip clip2;
+
+    public GameObject level0;
+    public GameObject level1;
+    public GameObject level2;
+
+    private bool currentPortalActive = false;
+    private int currentScore;
+
+    private Dictionary<int, Transform> spawns;
+    private Dictionary<int, AudioClip> sounds;
+    private Dictionary<int, GameObject> levels;
+
 
     void Awake()
     {
@@ -48,40 +57,63 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public int getCurrentScene()
+    void Start()
     {
-        return currentScene;
+        level0.SetActive(true);
+        level1.SetActive(false);
+        level2.SetActive(false);
+        levels = new Dictionary<int, GameObject>();
+        levels.Add(0,level0);
+        levels.Add(1,level1);
+        levels.Add(2,level2);
+        level = 0;
+        currentScore = 0;
+        spawns = new Dictionary<int, Transform>();
+        spawns.Add(0, origin0);
+        spawns.Add(1, origin1);
+        spawns.Add(2, origin2);
+        sounds = new Dictionary<int, AudioClip>();
+        sounds.Add(0, clip0);
+        sounds.Add(1, clip1);
+        sounds.Add(2, clip2);
+        audio.clip = clip0;
+        audio.loop = true;
+        audio.Play();
     }
 
-    public void loadCurrentScene()
+    void Update()
     {
-        PhotonNetwork.LoadLevel(scenes[currentScene]);
+
     }
 
-    public void nextScene()
+    public void InstantiatePlayer()
     {
-        if (currentPortalActive)
+        networkPlayer = PhotonNetwork.Instantiate(this.networkPlayer.name, new Vector3(0, 3f, 0), Quaternion.identity, 0);
+        np = networkPlayer.GetComponent<NetworkPlayer>();
+        networkPlayer.transform.parent = transform;
+        cameraRig.transform.parent = networkPlayer.transform;
+    }
+
+    public void nextLevel() {
+        if (level < 2)
         {
-            if (currentScene >1 && currentScene <5)
-            {
-                currentPlayer.updatePlayerScore(tempScore);
-            }
-            currentScene++;
-            PhotonNetwork.LoadLevel(scenes[currentScene]);
+            level++;
+            levels[level].SetActive(true);
+            setPlayerScore(currentScore);
+            currentScore = 0;
             currentPortalActive = false;
+            XRRigPosition.transform.position = spawns[level].position;
+            audio.Stop();
+            audio.clip = sounds[level];
+            audio.loop = true;
+            audio.Play();
+            levels[level-1].SetActive(false);
         }
     }
 
-    public void startQuiz()
+    public int getCurrentLevel()
     {
-        //last scene in build settings
-        PhotonNetwork.LoadLevel("Quiz");
-    }
-
-    public void endQuiz(int score)
-    {
-        tempScore = score;
-        PhotonNetwork.LoadLevel(scenes[currentScene]);
+        return level;
     }
 
     public bool isCurrentPortalActive()
@@ -89,19 +121,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         return currentPortalActive;
     }
 
-    public void OnLeaveButtonClicked()
+    public void setCurrentPortal(bool status)
     {
-        PhotonNetwork.LeaveRoom();
+        currentPortalActive = status;
     }
 
-    public override void OnLeftRoom()
+    public void setPlayerScoreGM (int score)
     {
-        PhotonNetwork.LoadLevel("Start");
+        currentScore = score;
     }
 
-    public PlayerControls GetCurrentPlayer()
+    public void setPlayerScore(int score)
     {
-        return currentPlayer;
+        np.setScore(score);
+    }
+    public int getTotalScore() {
+        return np.getTotalScore();
     }
 }
-      
+

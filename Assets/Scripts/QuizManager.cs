@@ -14,6 +14,8 @@ public class QuizManager : MonoBehaviour
     //gets passed to GM
     public int score;
     public int totoalQuestions = 0;
+    public GameObject Quiz;
+    public GameObject QuizContainer;
     public GameObject Quizpanel;
     public GameObject GoPanel;
     private GameManager gameManager;
@@ -21,11 +23,7 @@ public class QuizManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
-        setUp();
-        totoalQuestions = QnA.Count;
-        score = 0;
-        GoPanel.SetActive(false);
-        generateQuestion();
+        hideQuiz();
     }
 
     private void generateQuestion()
@@ -54,6 +52,7 @@ public class QuizManager : MonoBehaviour
             {
                 options[i].GetComponent<AnswerScript>().isCorrect = true;
             }
+            options[i].GetComponent<AnswerScript>().setNeutral();
         }
     }
 
@@ -79,19 +78,48 @@ public class QuizManager : MonoBehaviour
         int compValue = (int)Math.Round(totoalQuestions * 0.6);
         if (score >= compValue)
         {
-            gameManager.currentPortalActive = true;
+            gameManager.setCurrentPortal(true);
+            gameManager.setPlayerScoreGM(score);
         }
     }
 
     public void retry()
     {
-        gameManager.startQuiz();
+        showQuiz();
     }
 
     public void close()
     {
-        int currentScore = (int)score;
-        gameManager.endQuiz(score);
+        hideQuiz();
+    }
+
+    public void showQuiz()
+    {
+        switch (gameManager.getCurrentLevel())
+        {
+            case 0:
+                QuizContainer.transform.position = new Vector3(-2.62298346f, 5.0301981f, 3.74675226f);
+                break;
+            case 1:
+                QuizContainer.transform.position = new Vector3(293.8760070800781f,-10.1899995803833f,9.932999610900879f);
+                break;
+            default:
+                QuizContainer.transform.position = new Vector3(-2.62298346f, 5.0301981f, 3.74675226f);
+                break;
+             
+        }
+        Quiz.SetActive(true);
+        GoPanel.SetActive(false);
+        Quizpanel.SetActive(true);
+        setUp();
+        totoalQuestions = QnA.Count;
+        score = 0;
+        generateQuestion();
+    }
+
+    public void hideQuiz()
+    {
+        Quiz.SetActive(false);
     }
 
     private void setUp()
@@ -113,22 +141,22 @@ public class QuizManager : MonoBehaviour
 
         List<QuestionsAndAnswers> quiz1 = new List<QuestionsAndAnswers>();
 
-        switch (gameManager.getCurrentScene())
+        switch (gameManager.getCurrentLevel())
         {
-            case 2:
-                question1 = "Are you on the moon?";
-                answers1 = new string[] { "no", "no", "yes", "no" };
-                correct1 = 3;
+            case 0:
+                question1 = "What is the gravity of the moon?";
+                answers1 = new string[] { "1.625 m/s2", "9.255 m/s2", "3.547 m/s2", "7.881 m/s2" };
+                correct1 = 1;
                 questionAndAnswers1 = new QuestionsAndAnswers(question1, answers1, correct1);
 
-                question2 = "Do you like the moon?";
-                answers2 = new string[] { "yes", "no", "no", "no" };
-                correct2 = 1;
+                question2 = "What is the moon made out of";
+                answers2 = new string[] { "cheese", "icy materials", "mostly gas", "anorthosite" };
+                correct2 = 4;
                 questionAndAnswers2 = new QuestionsAndAnswers(question2, answers2, correct2);
 
-                question3 = "Do you like sweets?";
-                answers3 = new string[] { "no", "no", "no", "yes" };
-                correct3 = 4;
+                question3 = "What does moon dust smell like?";
+                answers3 = new string[] { "roses", "gun powder", "acid", "dish soap" };
+                correct3 = 2;
                 questionAndAnswers3 = new QuestionsAndAnswers(question3, answers3, correct3);
 
                 quiz1.Add(questionAndAnswers1);
@@ -137,42 +165,20 @@ public class QuizManager : MonoBehaviour
                 QnA = quiz1;
                 break;
 
-            case 3:
-                question1 = "Are you on mars?";
-                answers1 = new string[] { "no", "no", "yes", "no" };
-                correct1 = 3;
+            case 1:
+                question1 = "What is the gravity on mars?";
+                answers1 = new string[] { "9.644 m/s2", "3.721 m/s2", "2.437 m/s2", "8.169 m/s2" };
+                correct1 = 2;
                 questionAndAnswers1 = new QuestionsAndAnswers(question1, answers1, correct1);
 
-                question2 = "Do you like mars? ";
-                answers2 = new string[] { "yes", "no", "no", "no" };
-                correct2 = 1;
+                question2 = "Why is the mars called red planet? ";
+                answers2 = new string[] { "hot temperature", "made up of phosphorus", "made up of oxidized iron", "red clouds" };
+                correct2 = 3;
                 questionAndAnswers2 = new QuestionsAndAnswers(question2, answers2, correct2);
 
-                question3 = "Do you like sweets?";
-                answers3 = new string[] { "no", "no", "no", "yes" };
-                correct3 = 4;
-                questionAndAnswers3 = new QuestionsAndAnswers(question3, answers3, correct3);
-
-                quiz1.Add(questionAndAnswers1);
-                quiz1.Add(questionAndAnswers2);
-                quiz1.Add(questionAndAnswers3);
-                QnA = quiz1;
-                break;
-
-            case 4:
-                question1 = "Are you on jupier?";
-                answers1 = new string[] { "no", "no", "yes", "no" };
-                correct1 = 3;
-                questionAndAnswers1 = new QuestionsAndAnswers(question1, answers1, correct1);
-
-                question2 = "Do you like jupiter? ";
-                answers2 = new string[] { "yes", "no", "no", "no" };
-                correct2 = 1;
-                questionAndAnswers2 = new QuestionsAndAnswers(question2, answers2, correct2);
-
-                question3 = "Do you like sweets?";
-                answers3 = new string[] { "no", "no", "no", "yes" };
-                correct3 = 4;
+                question3 = "How many moons does the mars have?";
+                answers3 = new string[] { "2", "1", "7", "none" };
+                correct3 = 1;
                 questionAndAnswers3 = new QuestionsAndAnswers(question3, answers3, correct3);
 
                 quiz1.Add(questionAndAnswers1);
@@ -185,4 +191,4 @@ public class QuizManager : MonoBehaviour
                 break;
         }
     }
-}
+    }

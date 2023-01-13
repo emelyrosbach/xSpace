@@ -17,3 +17,4 @@ MonoBehaviour:
   m_ignoreKeys:
   - InitializeonStartup
   - BuildTarget
+  - VirtualRealitySupportedwithOculus

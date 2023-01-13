@@ -2,25 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//https://www.youtube.com/watch?v=G9QDFB2RQGA
-
 public class Guard : MonoBehaviour
 {
-    private GameManager gameManager;
-
+    public GameObject quizManagerObject;
+    public QuizManager quizManager;
+    // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.Instance;
+        quizManager = quizManagerObject.GetComponent<QuizManager>();
     }
 
-    //Both old & new Input Manager enabled
+    // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    void OnMouseDown()
+    public void OnCollisionEnter(Collision other)
     {
-        gameManager.startQuiz();
+        quizManager.showQuiz();
+    }
+
+    public void OnMouseDown()
+    {
+        quizManager.showQuiz();
     }
 }
